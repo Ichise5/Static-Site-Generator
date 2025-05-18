@@ -16,6 +16,7 @@ def delete_public(path: str) -> None:
             os.remove(item.path)
 
 def copy_static(static:str, public: str) -> None:
+    #print(static)
     for item in os.scandir(static):
         if item.is_dir():
             #print("Making directory of path \n" + item.name + "\n in public")
@@ -57,7 +58,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
 
     for file in files:
         if file.is_dir():
-            os.mkdir(dest_dir_path, file.name)
+            os.mkdir(os.path.join(dest_dir_path, file.name))
             generate_pages_recursive(os.path.join(dir_path_content, file.name),
                                      template_path,
                                      os.path.join(dest_dir_path, file.name),

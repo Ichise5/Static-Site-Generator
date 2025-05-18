@@ -5,11 +5,12 @@ import os
 
 
 def main():
-    basepath = sys.argv[0]
+    args = sys.argv[0]
+    basepath = args[0]
     if basepath not in locals() or basepath == "":
-        basepath = "./"
+        basepath = "/"
 
-    print(basepath)
+    #print(args)
     dir_path_static = basepath+"static"
     dir_path_public = basepath+"docs"
     dir_path_content = basepath+"content"
