@@ -1,19 +1,22 @@
 from gencontent import *
 
+import sys
 import os
 
 
-
-
-
 def main():
-    dir_path_static = "./static"
-    dir_path_public = "./public"
-    dir_path_content = "./content"
-    template_path = "./template.html"
+    basepath = sys.argv[0]
+    if basepath not in locals() or basepath == "":
+        basepath = "./"
 
-    delete_public(dir_path_public)
-    copy_static(dir_path_static)
-    generate_pages_recursive(dir_path_content,template_path, dir_path_public)
+    print(basepath)
+    dir_path_static = basepath+"static"
+    dir_path_public = basepath+"docs"
+    dir_path_content = basepath+"content"
+    template_path = basepath+"template.html"
+
+    delete_public(basepath+dir_path_public)
+    copy_static(basepath+dir_path_static, basepath+dir_path_public)
+    generate_pages_recursive(dir_path_content,template_path, dir_path_public, basepath)
 
 main()
