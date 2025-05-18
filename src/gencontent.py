@@ -46,8 +46,8 @@ def generate_page(from_path:str, template_path:str, dest_path:str, basepath:str)
 
     template = template.replace("{{ Title }}", title)
     template = template.replace("{{ Content }}", html)
-    template = template.replace(r'href="/', r'href="{basepath}')
-    template = template.replace(r'src="/', r'src="{basepath}')
+    template = template.replace(r'href="/', f'href="{basepath}')
+    template = template.replace(r'src="/', f'src="{basepath}')
 
     with open(dest_path,'w') as f:
         f.write(template)
