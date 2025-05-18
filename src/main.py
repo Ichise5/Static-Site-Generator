@@ -4,17 +4,18 @@ import sys
 import os
 
 
-def main():
-    args = sys.argv[0]
-    basepath = args[0]
-    if basepath not in locals() or basepath == "":
-        basepath = "/"
+dir_path_static = "./static"
+dir_path_public = "./docs"
+dir_path_content = "./content"
+template_path = "./template.html"
+default_basepath = "/"
 
-    #print(args)
-    dir_path_static = basepath+"static"
-    dir_path_public = basepath+"docs"
-    dir_path_content = basepath+"content"
-    template_path = basepath+"template.html"
+def main():
+    basepath = default_basepath
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+
+
 
     delete_public(dir_path_public)
     copy_static(dir_path_static, dir_path_public)
