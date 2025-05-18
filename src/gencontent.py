@@ -34,9 +34,9 @@ def extract_title(markdown:str)->str:
 
 def generate_page(from_path:str, template_path:str, dest_path:str, basepath:str):
     print(f"Generating pages from {from_path} to {dest_path} using {template_path}")
-    with open(os.path.join(basepath,from_path),'r') as f:
+    with open(from_path,'r') as f:
         markdown = f.read()
-    with open(os.path.join(basepath,template_path),'r') as f:
+    with open(template_path,'r') as f:
         template = f.read()
 
     node = markdown_to_html_node(markdown)
@@ -57,7 +57,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
 
     for file in files:
         if file.is_dir():
-            os.mkdir(os.path.join(basepath,dest_dir_path, file.name))
+            os.mkdir(dest_dir_path, file.name)
             generate_pages_recursive(os.path.join(dir_path_content, file.name),
                                      template_path,
                                      os.path.join(dest_dir_path, file.name),
